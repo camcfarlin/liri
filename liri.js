@@ -1,6 +1,5 @@
 //captures the user input on the command line
 var input = process.argv[2];
-
 var keys = require('./keys.js');
 var twitter = require('twitter');
 var parameters = {screen_name: 'camcfarlin', count: 20};
@@ -10,19 +9,14 @@ var client = new twitter(keys.twitterKeys);
 var spotify = require('spotify');
 var song = '';
 
-//variable for omdb
+//variable for OMBD
 var request = require('request');
 var movie = '';
 
 //variable for fs
 var fs = require('fs');
 
-// if(input == 'do-what-it-says'){
-// 	input = 
-// }
-
-//TWITTER==============================================================================
-//if user input is my-tweets this will post the text only from my last 20 tweets
+//TWITTER
 if(input == 'my-tweets'){
 	console.log('');
 	console.log('-----------------------------------------------------------------------');
@@ -33,7 +27,7 @@ if(input == 'my-tweets'){
 		}
 	})
 }
-//SPOTIFY===============================================================================
+//SPOTIFY
 else if(input =='spotify-this-song'){
 	for(i=3;i<process.argv.length;i++){
 		var song = song + '+' + process.argv[i];
@@ -55,10 +49,17 @@ else if(input =='spotify-this-song'){
 		}
 	})
 }
-//OMDB===================================================================================
+//OMDB
+// var movie;
+// if (movie === '') {
+//   movie = 'Mr. Nobody';
+// } else {
+//   movie = movie;
+// }
 else if(input == 'movie-this'){
 
 	for(i=3;i<process.argv.length;i++){
+    
 		var movie = movie + '+' + process.argv[i];
 	}
 
@@ -82,7 +83,7 @@ else if(input == 'movie-this'){
 		}
 	});
 }
-//DO WHAT IT SAYS============================================================================
+//DO WHAT IT SAYS
 else if(input == 'do-what-it-says'){
 	fs.readFile('random.txt', 'utf8', function(error, data){
 		var randomArray = data.split(' ');
